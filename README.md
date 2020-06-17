@@ -12,4 +12,10 @@ Returns a hashtable object will all lines and maches.
 
 
 ## Install
-# Man
+# Manually via commandline
+Automatically Puts Module to AutoLoad Directory. 
+```PowerShell
+git clone <this-repo>
+cd <this-repo>
+.\toPSProfile.ps1
+```

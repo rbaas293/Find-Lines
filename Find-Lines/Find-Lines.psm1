@@ -120,4 +120,4 @@ Function Get-FileObject
 
 #Get-FileObject -Path .\Find-Lines.psd1 -Verbose
 #Find-Lines -Path "C:\Users\rbaas\Documents\ghidra_9.1-BETA_DEV\docs\languages\html" -Pattern "ak" -Verbose
-ls "C:\Users\rbaas\Documents\obfu" -R | Find-Lines -Pattern "add" 
+#ls "C:\Users\rbaas\Documents\obfu" -R | Find-Lines -Pattern "add" 
