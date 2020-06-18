@@ -27,19 +27,25 @@ FileName    {        Key         Value        }
 ```
 
 ### Examples
-`Find-Lines -Path results -Pattern 'nc'`
-Search the file `results` for `nc`.
+* Search the file `results` for `nc`.
+  ```PowerShell
+  Find-Lines -Path results -Pattern 'nc'
+  ```
 
-`Find-Lines -Path ~/Desktop -Pattern 'nc'`
-Search files in `Desktop` for `nc`
+* Search files in `Desktop` for `nc`
+  ```PowerShell
+  Find-Lines -Path ~/Desktop -Pattern 'nc'
+  ```
 
-`ls -R ~/Documents | Find-Lines -Pattern nc` OR 
-`Get-ChildItem -Recurse ~/Documents | Find-Lines -Pattern nc`
-Search recursivly through the users `Documents` directory for `nc`
+* Search recursivly through the users `Documents` directory for `nc`
+  ```PowerShell
+  ls -R ~/Documents | Find-Lines -Pattern nc 
+  Get-ChildItem -Recurse ~/Documents | Find-Lines -Pattern nc
+  ```
 
 ### Install
-#### Manually via commandline
-Automatically transfers this module to autoLoad directory. 
+#### Manually Using Commandline
+Automatically transfers this module to default user modules directory. 
 ```PowerShell
 git clone https://github.com/rbaas293/Find-Lines.git
 cd Find-Lines
