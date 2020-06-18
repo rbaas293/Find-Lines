@@ -23,12 +23,12 @@ Color coded output with line numbers and pattern matches.
 #### Hashtable Mode (`-Hashtable`)
 Returns a hashtable object with the following format:
 ```
-  Key   
+  Key                     Value               
 FileName    {        Key         Value        }
             {   <LineNumber>=<PatternMatch>   }
 ```
 
-### ![find_readme_nc_hashtable](assets/find_readme_nc_hashtable.gif)
+![find_readme_nc_hashtable](assets/find_readme_nc_hashtable.gif)
 
 
 
