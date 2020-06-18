@@ -6,10 +6,10 @@ Prints matches of a Regex Pattern along with their corresponding line number.
 
 ### Inputs
 #### `-Path`
-File or Directory to search for matches. Directory will not recurse. To Recurse, use pipeline.
+File or Directory to search for matches. Directory will not recurse. To recurse, use pipeline.
 
 #### `-Pattern`
-Manditory Regex Pattern to search the given input for matches.
+Mandatory Regex Pattern to search the given input for matches.
 
 #### Pipeline
 This module accepts pipeline input objects from `Get-ChildItem`. Use of other pipeline inputs may have unexpected execution. 
@@ -18,15 +18,22 @@ This module accepts pipeline input objects from `Get-ChildItem`. Use of other pi
 #### Normal
 Color coded output with line numbers and pattern matches.
 
+![find_readme_nc](assets\find_readme_nc.gif)
+
 #### Hashtable Mode (`-Hashtable`)
-Returns a hashtable object with lines (keys) and matches (values). If run on a directory of files, a hashtable will be retured with the following format:
+Returns a hashtable object with the following format:
 ```
   Key   
 FileName    {        Key         Value        }
             {   <LineNumber>=<PatternMatch>   }
 ```
 
+### ![find_readme_nc_hashtable](C:\Users\rbaas\mygit\powershell-modules\Find-Lines\assets\find_readme_nc_hashtable.gif)
+
+
+
 ### Examples
+
 * Search the file `results` for `nc`.
   ```PowerShell
   Find-Lines -Path results -Pattern 'nc'
@@ -52,5 +59,5 @@ cd Find-Lines
 .\toPSProfile.ps1
 ```
 
-#### Via PSGallery
+#### PSGallery
 Coming Soon.
