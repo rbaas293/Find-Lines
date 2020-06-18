@@ -18,7 +18,7 @@ This module accepts pipeline input objects from `Get-ChildItem`. Use of other pi
 #### Normal
 Color coded output with line numbers and pattern matches.
 
-![find_readme_nc](assets\find_readme_nc.gif)
+![find_readme_nc](assets/find_readme_nc.gif)
 
 #### Hashtable Mode (`-Hashtable`)
 Returns a hashtable object with the following format:
@@ -28,7 +28,7 @@ FileName    {        Key         Value        }
             {   <LineNumber>=<PatternMatch>   }
 ```
 
-### ![find_readme_nc_hashtable](C:\Users\rbaas\mygit\powershell-modules\Find-Lines\assets\find_readme_nc_hashtable.gif)
+### ![find_readme_nc_hashtable](assets/find_readme_nc_hashtable.gif)
 
 
 
