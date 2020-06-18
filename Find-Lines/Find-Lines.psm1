@@ -1,10 +1,15 @@
 function Find-Lines {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$false, ValueFromPipeline=$true)][string]$Path,
-        [Parameter(Mandatory=$true)][regex]$Pattern,
-        [switch]$Hashtable,
-        [switch]$Recursive    
+        [Parameter(Mandatory=$false, ValueFromPipeline=$true)][string]
+        #Absolute or relative path to a file or directory you want to search.
+        $Path,
+        [Parameter(Mandatory=$true)][regex]
+        #Regex pattern to search the given file/directory for matches.
+        $Pattern,
+        [switch]
+        #Switch to turn off host output and return a nested hashtable.
+        $Hashtable=$false 
     )
         
     Begin 
@@ -39,7 +44,7 @@ function Find-Lines {
         foreach ($File in $Files) 
         {
             #If ($Path -match "[a-zA-Z]:") { Write-Host "Test Network Drive Here. Map if not found." -ForegroundColor Red ; return }
-            If ($File -match "\.zip|\.7z|\.tar") { continue }
+            If ($File -match "\.zip|\.7z|\.tar|\.mp\d|\.m\da|\.m\dv|\.mov|\.mvk|\.mpeg|\.wmv|\.flv") { continue }
             If (Test-Path -Path $File.FullName -PathType Container) { continue }
             If ( ($File.GetType()).Name -ne "FileInfo" ) { Write-Error "Type of File: $File is Not Valid." ; continue }
             
@@ -81,6 +86,34 @@ function Find-Lines {
     {
         If ($Hashtable) { Return $Ret }       
     }
+<#
+.SYNOPSIS
+Finds line number(s) of pattern matches for a given input.
+.DESCRIPTION
+Finds and displays colored easy to read ouput of regex matches and their line numbers.
+.INPUTS
+Supports input to the `-Path` paramater of type `stirng`
+Also supports pipeline of FileSystem Ojects. See Examples.
+.OUTPUTS
+If `-Hashtable` is passed, a hashtable object will be returned  with the following format:
+```
+  Key   
+FileName    {        Key         Value        }
+            {   <LineNumber>=<PatternMatch>   } 
+.EXAMPLE
+Find-Lines -Path results -Pattern 'nc'
+ Search the file `results` for `nc`.
+.EXAMPLE
+Find-Lines -Path ~/Desktop -Pattern 'nc'
+Search files in `Desktop` for `nc`
+.EXAMPLE
+Get-ChildItem -Recurse ~/Documents | Find-Lines -Pattern nc
+Search recursivly through the users `Documents` directory for `nc`
+.LINK
+https://github.com/rbaas293/Find-Lines
+#>
+
+
 }
 
 
@@ -89,7 +122,7 @@ Function Get-FileObject
     [CmdletBinding()]
     param (
         [string]
-        #Specified File to get a File Object for. Can be an absolute, or relative path to current directory. 
+        #Specified file to get a file object for. Can be an absolute, or relative path. 
         $Path
     )
     If (!(Test-Path -Path $Path -PathType Leaf)) { Throw "Path : $Path is Not a File. "}
@@ -118,6 +151,3 @@ Function Get-FileObject
     Return $FileObject
 }
 
-#Get-FileObject -Path .\Find-Lines.psd1 -Verbose
-#Find-Lines -Path "C:\Users\rbaas\Documents\ghidra_9.1-BETA_DEV\docs\languages\html" -Pattern "ak" -Verbose
-#ls "C:\Users\rbaas\Documents\obfu" -R | Find-Lines -Pattern "add" 

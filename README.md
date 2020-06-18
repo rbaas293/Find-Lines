@@ -52,10 +52,10 @@ FileName    {        Key         Value        }
 
 ### Install
 #### Manually Using Commandline
-Automatically transfers this module to default user modules directory. 
-```PowerShell
+ ```PowerShell
 git clone https://github.com/rbaas293/Find-Lines.git
 cd Find-Lines
+# Automatically transfers this module to default user modules directory.
 .\toPSProfile.ps1
 ```
 

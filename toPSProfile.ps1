@@ -4,26 +4,31 @@ param (
      [string]$Modules   
 )
 
+$Env:PSModulePath -split ";|:" | ForEach-Object { If ($_ -match "Documents") { $ModulePath = $_ } }
+
+Write-Verbose "PSModulePath: $ModulePath"
+
 If (!$Modules) 
 {
     Get-ChildItem -Directory | `
     ForEach-Object {
 
-        If ($_.Name -eq "Tests") { continue }
+        If ($_.Name -eq "Tests")  { return }
+        If ($_.Name -eq "assets") { return }
 
-        If (Test-Path -Path "$Env:HOMEPATH\Documents\WindowsPowerShell\Modules\$($_.Name)") 
+        If (Test-Path -Path "$ModulePath\$($_.Name)") 
         {
             Write-Host "Removing Old Version." -ForegroundColor Cyan
-            Remove-Item -Recurse "$Env:HOMEPATH\Documents\WindowsPowerShell\Modules\$($_.Name)" -force
+            Remove-Item -Recurse "$ModulePath\$($_.Name)" -force
         }
 
-        Write-Host "Copying Module: " -ForegroundColor Cyan -NoNewline ; Write-Host "$($_.Name)" -ForegroundColor Green -NoNewline
+        Write-Host "Copying Module: " -ForegroundColor Cyan -NoNewline ; Write-Host "$($_.Name)" -ForegroundColor Green 
 
-        Copy-Item -Path $_ -Recurse -Destination "$Env:HOMEPATH\Documents\WindowsPowerShell\Modules\$($_.Name)" -Force
-        If (Test-Path -Path "$Env:HOMEPATH\Documents\WindowsPowerShell\Modules\$($_.Name)") 
+        Copy-Item -Path $_ -Recurse -Destination "$ModulePath\$($_.Name)" -Force
+        If (Test-Path -Path "$ModulePath\$($_.Name)") 
         {
-            Write-Host "        Success." -ForegroundColor Yellow
+               Write-Host "                Success." -ForegroundColor Yellow
         }
-        Else { Write-Host "        Failed." -ForegroundColor Red}
+        Else { Write-Host "                Failed." -ForegroundColor Red}
     }
 }
