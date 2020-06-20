@@ -11,7 +11,7 @@ File or Directory to search for matches. Directory will not recurse. To recurse,
 #### `-Pattern`
 Mandatory Regex Pattern to search the given input for matches.
 
-#### Pipeline
+#### `Pipeline`
 This module accepts pipeline input objects from `Get-ChildItem`. Use of other pipeline inputs may have unexpected execution. 
 
 ### Outputs
@@ -34,7 +34,7 @@ FileName    {        Key         Value        }
 
 ### Examples
 
-* Search the file `results` for `nc`.
+* Search file `results` for `nc`.
   ```PowerShell
   Find-Lines -Path results -Pattern 'nc'
   ```
