@@ -11,6 +11,9 @@ File or Directory to search for matches. Directory will not recurse. To recurse,
 #### `-Pattern`
 Mandatory Regex Pattern to search the given input for matches.
 
+#### `-Hashtable`
+Returns a hashtable object, see Outputs for more information.
+
 #### `Pipeline`
 This module accepts pipeline input objects from `Get-ChildItem`. Use of other pipeline inputs may have unexpected execution. 
 
@@ -29,8 +32,6 @@ FileName    {        Key         Value        }
 ```
 
 ![find_readme_nc_hashtable](assets/find_readme_nc_hashtable.gif)
-
-
 
 ### Examples
 
